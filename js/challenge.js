@@ -30,3 +30,17 @@ function renderComment(comment) {
     commentList.append(newComment);
 }
 
+let likeBttn = document.getElementById('heart');
+let likeList = document.getElementsByClassName('likes')[0];
+let likeCounter = document.getElementById('counter');
+let likeCount = 0;
+
+likeBttn.addEventListener('click', addLike);
+
+function addLike() {
+    let timeCount = likeCounter.textContent;    
+    let newLike = document.createElement('li');
+    newLike.textContent = `${timeCount} has been liked ${++likeCount}`;
+    console.log(likeList);
+    likeList.append(newLike);
+}
