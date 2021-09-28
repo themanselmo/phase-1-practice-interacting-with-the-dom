@@ -30,6 +30,7 @@ function renderComment(comment) {
     commentList.append(newComment);
 }
 
+
 let likeBttn = document.getElementById('heart');
 let likeList = document.getElementsByClassName('likes')[0];
 let likeCounter = document.getElementById('counter');
@@ -37,10 +38,39 @@ let likeCount = 0;
 
 likeBttn.addEventListener('click', addLike);
 
+
 function addLike() {
-    let timeCount = likeCounter.textContent;    
-    let newLike = document.createElement('li');
-    newLike.textContent = `${timeCount} has been liked ${++likeCount}`;
-    console.log(likeList);
-    likeList.append(newLike);
+    
+    let timeCount = likeCounter.textContent;
+    
+    const foundLi = document.getElementById(`like-${timeCount}`);
+    if(foundLi) {
+        // change the Li
+        let splitLi = foundLi.textContent.split(' ');
+        console.log(splitLi);
+        let newNum = ++splitLi[splitLi.length-2];
+        console.log(newNum);
+        foundLi.textContent = `${timeCount} has been liked ${newNum} times`;
+    } else {
+        // make a new li
+        let newLike = document.createElement('li');
+        newLike.id = `like-${timeCount}`;
+
+        newLike.textContent = `${timeCount} has been liked 1 time`;
+        
+        likeList.append(newLike);
+    }
 }
+
+let plus = document.getElementById('plus');
+let minus = document.getElementById('minus');
+
+plus.addEventListener('click', () =>{
+    let currentVal = likeCounter.textContent;
+    likeCounter.textContent = ++currentVal;
+})
+
+minus.addEventListener('click', () => {
+    let currentVal = likeCounter.textContent;
+    likeCounter.textContent = --currentVal;
+})
