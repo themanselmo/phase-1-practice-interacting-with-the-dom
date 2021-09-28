@@ -30,11 +30,11 @@ function renderComment(comment) {
     commentList.append(newComment);
 }
 
-
+//Capturing the elements from the HTML page
 let likeBttn = document.getElementById('heart');
 let likeList = document.getElementsByClassName('likes')[0];
 let likeCounter = document.getElementById('counter');
-let likeCount = 0;
+
 
 likeBttn.addEventListener('click', addLike);
 
