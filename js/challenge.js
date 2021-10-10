@@ -35,29 +35,40 @@ let likeBttn = document.getElementById('heart');
 let likeList = document.getElementsByClassName('likes')[0];
 let likeCounter = document.getElementById('counter');
 
-
+//Adding an event listener whenever 
 likeBttn.addEventListener('click', addLike);
 
-
+//Defining the function that adds a li to the ul under class 'likes'
+//captured as likeList variable above. 
 function addLike() {
-    
+    //timeCount is the text content found in id 'counter'
     let timeCount = likeCounter.textContent;
-    
+    //foundLi checks if an li already exists for the current time count.
     const foundLi = document.getElementById(`like-${timeCount}`);
+    //creating an if statement that if 'foundLi' already exists, then 
+    //update existing li element. 
     if(foundLi) {
-        // change the Li
+        // Taknig the found li element and splitting it's contents
+        //into a new array. 
         let splitLi = foundLi.textContent.split(' ');
         console.log(splitLi);
+        //And then it access the second to last index to update the
+        //number of likes.
         let newNum = ++splitLi[splitLi.length-2];
         console.log(newNum);
+        //we're updating the text content in foundLi to reflect
+        //the incremented amount of likes. 
         foundLi.textContent = `${timeCount} has been liked ${newNum} times`;
+        //otherwise, if not found, create a new li into 'likes' list. 
     } else {
-        // make a new li
+        // Literally creating a new li element. Setting it into this var. 
         let newLike = document.createElement('li');
+        //creating an id for newLike. it is 'like-(the number in the counter)
         newLike.id = `like-${timeCount}`;
-
+        //newLike is being given the textContent to display. 
+        //timeCount is whatever the number in the counter is plus the string. 
         newLike.textContent = `${timeCount} has been liked 1 time`;
-        
+        //likeList is the 'likes' 
         likeList.append(newLike);
     }
 }
@@ -74,3 +85,4 @@ minus.addEventListener('click', () => {
     let currentVal = likeCounter.textContent;
     likeCounter.textContent = --currentVal;
 })
+
